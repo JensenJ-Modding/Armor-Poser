@@ -119,7 +119,7 @@ public class ArmorGlowWidget extends ObjectSelectionList<ArmorGlowWidget.ListEnt
 			Matrix3x2fStack pose = guiGraphics.pose();
 			pose.pushMatrix();
 			pose.translate(0, top - ((float) height / 2));
-			extractScrollingStringOverContents(guiGraphics.textRenderer(), getPositionComponent(), 18);
+			extractScrollingStringOverContents(guiGraphics.textRenderer(), getUUIDComponent(), 18);
 
 			if (isMouseOver(mouseX, mouseY)) {
 				Font font = this.parent.getScreenFont();
@@ -172,8 +172,8 @@ public class ArmorGlowWidget extends ObjectSelectionList<ArmorGlowWidget.ListEnt
 			}
 		}
 
-		public Component getPositionComponent() {
-			MutableComponent component = Component.literal(this.getArmorStand().blockPosition().toShortString());
+		public Component getUUIDComponent() {
+			MutableComponent component = Component.literal(this.getArmorStand().getUUID().toString().substring(0, 8));
 			if (this.showPlate)
 				component = component.withStyle(ChatFormatting.UNDERLINE);
 			if (this.isLocked())
@@ -194,7 +194,7 @@ public class ArmorGlowWidget extends ObjectSelectionList<ArmorGlowWidget.ListEnt
 
 		@Override
 		public Component getNarration() {
-			return getPositionComponent();
+			return getUUIDComponent();
 		}
 	}
 }
